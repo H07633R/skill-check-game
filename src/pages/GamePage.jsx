@@ -16,17 +16,12 @@ const PageContainer = styled.div`
   padding: 20px;
   position: relative;
   
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
-    opacity: 0.2;
-    z-index: 0;
+  /* Мобильные стили применяются только на экранах <= 768px */
+  @media (max-width: 768px) {
+    min-height: -webkit-fill-available;
+    touch-action: manipulation;
+    user-select: none;
+    padding: 10px;
   }
 `;
 
@@ -41,7 +36,6 @@ const GameContainer = styled.div`
   background: rgba(20, 10, 5, 0.7);
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
-  min-width: 350px;
   
   &::before {
     content: '';
@@ -55,6 +49,13 @@ const GameContainer = styled.div`
     z-index: -1;
     opacity: 0.3;
   }
+
+  /* Мобильные стили */
+  @media (max-width: 768px) {
+    padding: 20px;
+    width: 90%;
+    max-width: 350px;
+  }
 `;
 
 const Title = styled.h1`
@@ -64,6 +65,12 @@ const Title = styled.h1`
   font-family: 'MedievalSharp', cursive;
   text-transform: uppercase;
   letter-spacing: 2px;
+
+  /* Мобильные стили */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 `;
 
 const StartButton = styled.button`
@@ -155,8 +162,24 @@ const GamePage = () => {
     handleReset();
   };
 
+  const handleAction = useCallback(() => {
+    if (isRunning) {
+      handleHit();
+    }
+  }, [isRunning, handleHit]);
+
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    if (isRunning) {
+      handleAction();
+    }
+  };
+
   return (
-    <PageContainer>
+    <PageContainer 
+      onTouchStart={handleTouchStart}
+      onTouchEnd={(e) => e.preventDefault()}
+    >
       <BackgroundOverlay />
       <GameContainer>
         <Title>Sleight of Hand</Title>
