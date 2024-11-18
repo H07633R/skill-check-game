@@ -13,6 +13,7 @@ const Button = styled.button`
   padding: 8px 16px;
   font-size: 14px;
   font-family: 'MedievalSharp', cursive;
+  font-weight: bold;
   background: ${props => props.active ? 
     'linear-gradient(to bottom, #8B4513, #654321)' : 
     'linear-gradient(to bottom, #2a1810, #1a1008)'};
@@ -22,6 +23,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
 
   &:hover {
     background: ${props => props.active ? 
@@ -37,10 +39,10 @@ const Button = styled.button`
 
 const DifficultySelector = ({ currentDifficulty, onDifficultyChange }) => {
   const difficulties = [
-    { id: 'easy', label: 'Легкий' },
-    { id: 'normal', label: 'Средний' },
-    { id: 'hard', label: 'Сложный' },
-    { id: 'extreme', label: 'Очень сложный' }
+    { id: 'easy', label: 'Easy' },
+    { id: 'normal', label: 'Medium' },
+    { id: 'hard', label: 'Hard' },
+    { id: 'extreme', label: 'Extreme' }
   ];
 
   return (

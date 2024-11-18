@@ -16,7 +16,7 @@ const ScoreContainer = styled.div`
 
 const Score = ({ current, required }) => (
   <ScoreContainer>
-    Попадания: {typeof current === 'number' ? current : 0}/{required}
+    Hits: {typeof current === 'number' ? current : 0}/{required}
   </ScoreContainer>
 );
 

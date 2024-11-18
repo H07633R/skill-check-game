@@ -159,7 +159,7 @@ const GamePage = () => {
     <PageContainer>
       <BackgroundOverlay />
       <GameContainer>
-        <Title>Lock Picker's Trial</Title>
+        <Title>Sleight of Hand</Title>
         {!isRunning && (
           <DifficultySelector 
             currentDifficulty={difficulty} 
@@ -174,7 +174,7 @@ const GamePage = () => {
         />
         {!isRunning && (
           <StartButton onClick={handleStart}>
-            Начать игру
+            Start
           </StartButton>
         )}
       </GameContainer>
