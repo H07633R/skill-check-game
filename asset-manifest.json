@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F/static/js/main.4ff6801f.js",
-    "index.html": "/%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F/index.html",
-    "main.4ff6801f.js.map": "/%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D1%8F/static/js/main.4ff6801f.js.map"
+    "main.js": "/skill-check-game/static/js/main.2ec2ef2a.js",
+    "index.html": "/skill-check-game/index.html",
+    "main.2ec2ef2a.js.map": "/skill-check-game/static/js/main.2ec2ef2a.js.map"
   },
   "entrypoints": [
-    "static/js/main.4ff6801f.js"
+    "static/js/main.2ec2ef2a.js"
   ]
 }
