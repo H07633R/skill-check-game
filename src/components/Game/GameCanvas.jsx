@@ -3,23 +3,30 @@ import styled from 'styled-components';
 import SkillCheckGame from './SkillCheckGame';
 
 const Canvas = styled.canvas`
-  border: 2px solid #333;
+  border: 2px solid #8B4513;
   border-radius: 50%;
-  background-color: #2a2a2a;
+  background-color: #2a1810;
+  box-shadow: 
+    0 0 15px rgba(139, 69, 19, 0.3),
+    inset 0 0 15px rgba(139, 69, 19, 0.2);
 `;
 
 const DIFFICULTY_SETTINGS = {
   easy: {
-    speed: 0.06,
-    targetSize: 0.15 // 15% от круга
+    speed: 0.05,
+    targetSize: 0.15 
   },
   normal: {
-    speed: 0.075,
-    targetSize: 0.12 // 12% от круга
+    speed: 0.07,
+    targetSize: 0.13
   },
   hard: {
-    speed: 0.08,
-    targetSize: 0.10 // 10% от круга
+    speed: 0.09,
+    targetSize: 0.11
+  },
+  extreme: {
+    speed: 0.10,    
+    targetSize: 0.09
   }
 };
 

@@ -11,12 +11,9 @@ class SkillCheckGame {
     this.rotationSpeed = speed;
     this.targetSize = Math.PI * targetSize;
     this.isRunning = false;
-    
-    // Начальная позиция цели
-    this.targetStart = Math.PI * 1.7;
+    this.targetStart = 0;
   }
 
-  // Новый метод для перемещения цели
   moveTarget() {
     // Генерируем новую позицию и нормализуем её
     let newTarget = Math.random() * Math.PI * 2;
@@ -25,6 +22,7 @@ class SkillCheckGame {
     }
     
     this.targetStart = newTarget;
+    this.draw();
   }
 
   draw() {
@@ -37,15 +35,19 @@ class SkillCheckGame {
     this.ctx.lineWidth = 10;
     this.ctx.stroke();
     
-    // Целевая зона
-    this.ctx.beginPath();
-    this.ctx.arc(this.centerX, this.centerY, this.radius, 
-      this.targetStart, this.targetStart + this.targetSize);
-    this.ctx.strokeStyle = '#4CAF50';
-    this.ctx.stroke();
+    // Целевая зона рисуется только если игра запущена
+    if (this.isRunning) {
+      this.ctx.beginPath();
+      this.ctx.arc(this.centerX, this.centerY, this.radius, 
+        this.targetStart, this.targetStart + this.targetSize);
+      this.ctx.strokeStyle = '#4CAF50';
+      this.ctx.stroke();
+    }
     
-    // Стрелка
-    this.drawNeedle();
+    // Стрелка рисуется только если игра запущена
+    if (this.isRunning) {
+      this.drawNeedle();
+    }
   }
 
   drawNeedle() {
@@ -93,8 +95,7 @@ class SkillCheckGame {
   start() {
     this.isRunning = true;
     this.angle = 0;
-    // При старте игры также рандомизируем начальную позицию
-    this.moveTarget();
+    this.moveTarget(); // Теперь зеленая зона появится только при старте
     this.update();
   }
 
@@ -106,8 +107,7 @@ class SkillCheckGame {
   setDifficulty(speed, targetSize) {
     this.rotationSpeed = speed;
     this.targetSize = Math.PI * targetSize;
-    // При смене сложности также меняем позицию цели
-    this.moveTarget();
+    this.draw(); // Просто перерисовываем
   }
 }
 
