@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/skill-check-game/static/js/main.425d95cf.js",
+    "main.js": "/skill-check-game/static/js/main.08d7660d.js",
     "index.html": "/skill-check-game/index.html",
-    "main.425d95cf.js.map": "/skill-check-game/static/js/main.425d95cf.js.map"
+    "main.08d7660d.js.map": "/skill-check-game/static/js/main.08d7660d.js.map"
   },
   "entrypoints": [
-    "static/js/main.425d95cf.js"
+    "static/js/main.08d7660d.js"
   ]
 }
