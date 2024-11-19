@@ -124,7 +124,19 @@ const GamePage = () => {
 
   const handleHit = useCallback(() => {
     if (!gameRef?.checkHit()) {
-      alert('Взлом не удался!');
+      const alertInstance = alert('Взлом не удался!');
+      if (window.innerWidth > 768) {
+        const handleAlertKeyDown = (e) => {
+          if (e.code === 'Space') {
+            e.preventDefault();
+            if (document.activeElement instanceof HTMLElement) {
+              document.activeElement.blur();
+            }
+            window.removeEventListener('keydown', handleAlertKeyDown);
+          }
+        };
+        window.addEventListener('keydown', handleAlertKeyDown);
+      }
       handleReset();
       return;
     }
@@ -135,7 +147,19 @@ const GamePage = () => {
       setIsRunning(false);
       setScore(newScore);
       setTimeout(() => {
-        alert('Успешный взлом!');
+        const alertInstance = alert('Успешный взлом!');
+        if (window.innerWidth > 768) {
+          const handleAlertKeyDown = (e) => {
+            if (e.code === 'Space') {
+              e.preventDefault();
+              if (document.activeElement instanceof HTMLElement) {
+                document.activeElement.blur();
+              }
+              window.removeEventListener('keydown', handleAlertKeyDown);
+            }
+          };
+          window.addEventListener('keydown', handleAlertKeyDown);
+        }
         handleReset();
       }, 100);
       return;
@@ -151,6 +175,10 @@ const GamePage = () => {
       if (e.code === 'Space' && isRunning) {
         e.preventDefault();
         handleHit();
+      }
+      if (e.code === 'Space' && !isRunning && window.innerWidth > 768) {
+        e.preventDefault();
+        handleStart();
       }
     };
 
