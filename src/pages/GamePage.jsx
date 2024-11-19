@@ -102,6 +102,12 @@ const StartButton = styled.button`
       0 1px 2px rgba(0, 0, 0, 0.2),
       inset 0 1px 1px rgba(0, 0, 0, 0.1);
   }
+
+  /* Мобильные стили */
+  @media (max-width: 768px) {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
 `;
 
 const GamePage = () => {
@@ -175,6 +181,11 @@ const GamePage = () => {
     }
   };
 
+  const handleStartTouchStart = (e) => {
+    e.preventDefault();
+    handleStart();
+  };
+
   return (
     <PageContainer 
       onTouchStart={handleTouchStart}
@@ -196,7 +207,11 @@ const GamePage = () => {
           setGameRef={setGameRef}
         />
         {!isRunning && (
-          <StartButton onClick={handleStart}>
+          <StartButton 
+            onClick={handleStart}
+            onTouchStart={handleStartTouchStart}
+            onTouchEnd={(e) => e.preventDefault()}
+          >
             Start
           </StartButton>
         )}

@@ -45,6 +45,11 @@ const DifficultySelector = ({ currentDifficulty, onDifficultyChange }) => {
     { id: 'extreme', label: 'Extreme' }
   ];
 
+  const handleTouchStart = (diffId) => (e) => {
+    e.preventDefault();
+    onDifficultyChange(diffId);
+  };
+
   return (
     <Container>
       {difficulties.map(diff => (
@@ -53,6 +58,8 @@ const DifficultySelector = ({ currentDifficulty, onDifficultyChange }) => {
           active={currentDifficulty === diff.id}
           difficulty={diff.id}
           onClick={() => onDifficultyChange(diff.id)}
+          onTouchStart={handleTouchStart(diff.id)}
+          onTouchEnd={(e) => e.preventDefault()}
         >
           {diff.label}
         </Button>
