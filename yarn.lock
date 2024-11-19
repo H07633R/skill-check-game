@@ -4961,6 +4961,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
+fsevents@^2.3.2, fsevents@~2.3.2:
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
+  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
+
 function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
@@ -6592,6 +6597,23 @@ locate-path@^6.0.0:
   integrity sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
   dependencies:
     p-locate "^5.0.0"
+
+"lock-pickers-trial@file:":
+  version "1.0.0"
+  resolved "file:"
+  dependencies:
+    "@react-spring/web" "^9.7.5"
+    "@testing-library/jest-dom" "^5.14.1"
+    "@testing-library/react" "^13.0.0"
+    "@testing-library/user-event" "^13.2.1"
+    lock-pickers-trial "file:"
+    react "^18.3.1"
+    react-dom "^18.3.1"
+    react-router-dom "^6.28.0"
+    react-scripts "5.0.1"
+    skill-check-game "file:"
+    styled-components "^6.1.13"
+    web-vitals "^2.1.0"
 
 lodash.debounce@^4.0.8:
   version "4.0.8"
@@ -8710,6 +8732,7 @@ sisteransi@^1.0.5:
     "@testing-library/jest-dom" "^5.14.1"
     "@testing-library/react" "^13.0.0"
     "@testing-library/user-event" "^13.2.1"
+    lock-pickers-trial "file:"
     react "^18.3.1"
     react-dom "^18.3.1"
     react-router-dom "^6.28.0"
