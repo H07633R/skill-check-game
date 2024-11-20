@@ -25,7 +25,7 @@ const DIFFICULTY_SETTINGS = {
     targetSize: 0.11
   },
   extreme: {
-    speed: 0.10,    
+    speed: 0.10,   
     targetSize: 0.09
   }
 };

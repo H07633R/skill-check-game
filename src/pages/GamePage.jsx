@@ -124,7 +124,7 @@ const GamePage = () => {
 
   const handleHit = useCallback(() => {
     if (!gameRef?.checkHit()) {
-      const alertInstance = alert('Взлом не удался!');
+      alert('Взлом не удался!');
       if (window.innerWidth > 768) {
         const handleAlertKeyDown = (e) => {
           if (e.code === 'Space') {
@@ -147,7 +147,7 @@ const GamePage = () => {
       setIsRunning(false);
       setScore(newScore);
       setTimeout(() => {
-        const alertInstance = alert('Успешный взлом!');
+        alert('Успешный взлом!');
         if (window.innerWidth > 768) {
           const handleAlertKeyDown = (e) => {
             if (e.code === 'Space') {

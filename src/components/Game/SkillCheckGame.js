@@ -8,10 +8,11 @@ class SkillCheckGame {
     
     // Игровые параметры
     this.angle = 0;
-    this.rotationSpeed = speed;
+    this.rotationSpeed = speed * 60;
     this.targetSize = Math.PI * targetSize;
     this.isRunning = false;
     this.targetStart = 0;
+    this.lastTime = 0;
   }
 
   moveTarget() {
@@ -65,11 +66,18 @@ class SkillCheckGame {
     this.ctx.restore();
   }
 
-  update() {
+  update(currentTime) {
     if (this.isRunning) {
-      this.angle += this.rotationSpeed;
+      if (!this.lastTime) {
+        this.lastTime = currentTime;
+      }
+      
+      const deltaTime = (currentTime - this.lastTime) / 1000; // Переводим в секунды
+      this.angle += this.rotationSpeed * deltaTime;
+      
+      this.lastTime = currentTime;
       this.draw();
-      this.animationFrame = requestAnimationFrame(() => this.update());
+      this.animationFrame = requestAnimationFrame((time) => this.update(time));
     }
   }
 
@@ -95,8 +103,9 @@ class SkillCheckGame {
   start() {
     this.isRunning = true;
     this.angle = 0;
-    this.moveTarget(); // Теперь зеленая зона появится только при старте
-    this.update();
+    this.lastTime = 0;
+    this.moveTarget();
+    this.update(0);
   }
 
   stop() {
@@ -105,9 +114,9 @@ class SkillCheckGame {
   }
 
   setDifficulty(speed, targetSize) {
-    this.rotationSpeed = speed;
+    this.rotationSpeed = speed * 60;
     this.targetSize = Math.PI * targetSize;
-    this.draw(); // Просто перерисовываем
+    this.draw();
   }
 }
 
