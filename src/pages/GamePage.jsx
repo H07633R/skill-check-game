@@ -5,6 +5,8 @@ import GameCanvas from '../components/Game/GameCanvas';
 import DifficultySelector from '../components/DifficultySelector';
 import Score from '../components/Score';
 import { BackgroundOverlay } from '../styles/BackgroundStyles';
+import { saveScore, getUserBestScore } from '../services/scores'
+import Leaderboard from '../components/Leaderboard'
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -116,59 +118,46 @@ const GamePage = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [score, setScore] = useState(0);
   const [gameRef, setGameRef] = useState(null);
+  const [bestScore, setBestScore] = useState(null)
+
+  useEffect(() => {
+    getUserBestScore(difficulty).then(setBestScore)
+  }, [difficulty])
 
   const handleReset = useCallback(() => {
     setIsRunning(false);
     setScore(0);
   }, []);
 
-  const handleHit = useCallback(() => {
+  const handleHit = useCallback(async () => {
     if (!gameRef?.checkHit()) {
-      alert('Взлом не удался!');
-      if (window.innerWidth > 768) {
-        const handleAlertKeyDown = (e) => {
-          if (e.code === 'Space') {
-            e.preventDefault();
-            if (document.activeElement instanceof HTMLElement) {
-              document.activeElement.blur();
-            }
-            window.removeEventListener('keydown', handleAlertKeyDown);
-          }
-        };
-        window.addEventListener('keydown', handleAlertKeyDown);
-      }
-      handleReset();
-      return;
+      alert('Взлом не удался!')
+      handleReset()
+      return
     }
 
-    const newScore = score + 1;
+    const newScore = score + 1
     
     if (newScore >= 3) {
-      setIsRunning(false);
-      setScore(newScore);
+      setIsRunning(false)
+      setScore(newScore)
+      
+      // Сохраняем результат
+      await saveScore({
+        score: newScore,
+        difficulty
+      })
+
       setTimeout(() => {
-        alert('Успешный взлом!');
-        if (window.innerWidth > 768) {
-          const handleAlertKeyDown = (e) => {
-            if (e.code === 'Space') {
-              e.preventDefault();
-              if (document.activeElement instanceof HTMLElement) {
-                document.activeElement.blur();
-              }
-              window.removeEventListener('keydown', handleAlertKeyDown);
-            }
-          };
-          window.addEventListener('keydown', handleAlertKeyDown);
-        }
-        handleReset();
-      }, 100);
-      return;
+        alert('Успешный взлом!')
+        handleReset()
+      }, 100)
+      return
     }
 
-    gameRef.moveTarget();
-    setScore(newScore);
-    
-  }, [gameRef, score, handleReset]);
+    gameRef.moveTarget()
+    setScore(newScore)
+  }, [gameRef, score, difficulty, handleReset])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -228,7 +217,7 @@ const GamePage = () => {
             onDifficultyChange={handleDifficultyChange}
           />
         )}
-        <Score current={score} required={3} />
+        <Score current={score} required={3} bestScore={bestScore} />
         <GameCanvas
           isRunning={isRunning}
           difficulty={difficulty}
@@ -243,6 +232,7 @@ const GamePage = () => {
             Start
           </StartButton>
         )}
+        <Leaderboard difficulty={difficulty} />
       </GameContainer>
     </PageContainer>
   );
